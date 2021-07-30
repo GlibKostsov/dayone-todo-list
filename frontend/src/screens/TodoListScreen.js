@@ -1,6 +1,8 @@
 import React from 'react'
 import getTodos from '../queries/getTodoList'
+import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
+import { css } from '@emotion/react'
 
 const TodoList = () => {
   const { loading, error, data } = useQuery(getTodos)
@@ -10,11 +12,20 @@ const TodoList = () => {
 
   if (data.getTodoList.length)
     return (
-      <ul>
-        {data.getTodoList.map((todo) => (
-          <p>{todo.title}</p>
-        ))}
-      </ul>
+      <div
+        css={css`
+          display: flex;
+        `}
+      >
+        <h1>Todo List</h1>
+        <ul>
+          {data.getTodoList.map((todo) => (
+            <Link to={`/todos/${todo.id}`}>
+              <p>{todo.title}</p>
+            </Link>
+          ))}
+        </ul>
+      </div>
     )
   return null
 }

@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export default gql`
-  query GetTodoList($orderBy: Ordering) {
-    getTodoList(orderBy: $orderBy) {
+  query GetTodoList($orderBy: Ordering, $types: [TodoTypes!]) {
+    getTodoList(orderBy: $orderBy, filters: { types: $types }) {
       id
       createdAt
       type

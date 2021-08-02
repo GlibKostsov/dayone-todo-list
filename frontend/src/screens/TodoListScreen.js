@@ -18,7 +18,10 @@ const TodoList = () => {
   const [todoListType, setTodoListType] = useState(RH)
 
   const { loading, error, data } = useQuery(getTodos, {
-    variables: { orderBy: todoListOrdering },
+    variables: {
+      orderBy: todoListOrdering,
+      filters: todoListType,
+    },
   })
 
   if (loading) return <p>Loading...</p>
@@ -29,22 +32,27 @@ const TodoList = () => {
       <div>
         <h1 style={{ textAlign: 'center' }}> Todo List</h1>
         <div>
-          <label for='type'>Order: </label>
+          <label for='ordering'>Order: </label>
           <select
-            name='type'
-            id='type'
+            name='ordering'
+            id='ordering'
             style={{ marginRight: '10px' }}
             onChange={(e) => setTodoListOrdering(e.target.value)}
           >
             <option value={DATE_DESC}>Descending</option>
             <option value={DATE_ASC}>Ascending</option>
           </select>
-          <label for='ordering'>Order: </label>
+
+          <label for='type'>Order: </label>
           <select
-            name='ordering'
-            id='ordering'
+            disabled
+            name='type'
+            id='type'
             style={{ marginRight: '10px' }}
-            onChange={(e) => setTodoListType(e.target.value)}
+            onChange={(e) => {
+              setTodoListType(e.target.value)
+              console.log(todoListType)
+            }}
           >
             <option value={RH}>RH</option>
             <option value={Tech}>Tech</option>
@@ -52,13 +60,14 @@ const TodoList = () => {
             <option value={Communication}>Communication</option>
           </select>
         </div>
+
         <div style={{ marginTop: '20px' }}>
           <label style={{ marginRight: '10px' }}>
-            <input type='checkbox' />
+            <input disabled type='checkbox' />
             Show Completed
           </label>
           <label style={{ marginRight: '10px' }}>
-            <input type='checkbox' />
+            <input disabled type='checkbox' />
             Todo Business
           </label>
         </div>

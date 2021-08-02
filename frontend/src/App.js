@@ -5,13 +5,16 @@ import { css, jsx } from '@emotion/react'
 import TodoListScreen from './screens/TodoListScreen'
 import TodoScreen from './screens/TodoScreen'
 
+const style = {
+  width: '70%',
+  display: 'flex',
+  justifyContent: 'center',
+  margin: 'auto',
+}
+
 const App = () => {
   return (
-    <div
-      css={css`
-        display: flex;
-      `}
-    >
+    <div style={style}>
       <Router>
         <Route path='/todos/:id' component={TodoScreen} exact />
         <Route path='/' component={TodoListScreen} exact />

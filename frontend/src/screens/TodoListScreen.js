@@ -1,8 +1,9 @@
 import React from 'react'
 import getTodos from '../queries/getTodoList'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import { css } from '@emotion/react'
+import { css, jsx } from '@emotion/react'
+import Todo from '../components/Todo'
 
 const TodoList = () => {
   const { loading, error, data } = useQuery(getTodos)
@@ -12,17 +13,17 @@ const TodoList = () => {
 
   if (data.getTodoList.length)
     return (
-      <div
-        css={css`
-          display: flex;
-        `}
-      >
-        <h1>Todo List</h1>
-        <ul>
+      <div>
+        <h1 style={{ textAlign: 'center' }}> Todo List</h1>
+        <ul style={{ paddingLeft: 0, marginTop: '50px' }}>
           {data.getTodoList.map((todo) => (
-            <Link to={`/todos/${todo.id}`}>
-              <p>{todo.title}</p>
-            </Link>
+            <NavLink
+              style={{ textDecoration: 'none', color: 'inherit' }}
+              to={`/todos/${todo.id}`}
+              activeStyle={{ color: 'red' }}
+            >
+              <Todo todo={todo} />
+            </NavLink>
           ))}
         </ul>
       </div>

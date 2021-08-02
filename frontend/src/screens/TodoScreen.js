@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import getTodoById from '../queries/getTodoById'
+import { Link } from 'react-router-dom'
 
 import Todo from '../components/Todo'
 
@@ -14,6 +15,8 @@ const TodoScreen = ({ match, history }) => {
 
   return (
     <div>
+      <h1 style={{ textAlign: 'center' }}> Todo Details</h1>
+      <Link to='/'>Back</Link>
       <Todo todo={data.getTodoById} />
     </div>
   )

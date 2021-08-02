@@ -16,7 +16,7 @@ const TodoScreen = ({ match, history }) => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}> Todo Details</h1>
-      <Link to='/'>Back</Link>
+      <button onClick={() => history.goBack()}>Back</button>
       <Todo todo={data.getTodoById} />
     </div>
   )

@@ -11,7 +11,7 @@ const Todo = ({ todo }) => {
   const [mutateFunction, { data, loading, error }] =
     useMutation(updateTodoStatusById)
 
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChange = () => {
     mutateFunction({
       variables: {
         id: todo.id,

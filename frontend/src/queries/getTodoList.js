@@ -1,13 +1,12 @@
 import { gql } from '@apollo/client'
 
 export default gql`
-  query {
-    getTodoList {
+  query GetTodoList($orderBy: Ordering) {
+    getTodoList(orderBy: $orderBy) {
       id
       createdAt
       type
       isDone
-      text
       title
     }
   }
